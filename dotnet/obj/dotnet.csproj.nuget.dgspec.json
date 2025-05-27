@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/hien/dotnet/dotnet.csproj": {}
+    "/Users/hien/Work/dockerfile-boilerplates/dotnet/dotnet.csproj": {}
   },
   "projects": {
-    "/Users/hien/dotnet/dotnet.csproj": {
+    "/Users/hien/Work/dockerfile-boilerplates/dotnet/dotnet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/hien/dotnet/dotnet.csproj",
+        "projectUniqueName": "/Users/hien/Work/dockerfile-boilerplates/dotnet/dotnet.csproj",
         "projectName": "dotnet",
-        "projectPath": "/Users/hien/dotnet/dotnet.csproj",
+        "projectPath": "/Users/hien/Work/dockerfile-boilerplates/dotnet/dotnet.csproj",
         "packagesPath": "/Users/hien/.nuget/packages/",
-        "outputPath": "/Users/hien/dotnet/obj/",
+        "outputPath": "/Users/hien/Work/dockerfile-boilerplates/dotnet/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/hien/.nuget/NuGet/NuGet.Config"

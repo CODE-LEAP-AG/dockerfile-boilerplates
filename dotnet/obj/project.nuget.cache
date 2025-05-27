@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nHXtX91Vr/U=",
+  "dgSpecHash": "yoKSeIQgTDo=",
   "success": true,
-  "projectFilePath": "/Users/hien/dotnet/dotnet.csproj",
+  "projectFilePath": "/Users/hien/Work/dockerfile-boilerplates/dotnet/dotnet.csproj",
   "expectedPackageFiles": [
     "/Users/hien/.nuget/packages/microsoft.aspnetcore.openapi/8.0.16/microsoft.aspnetcore.openapi.8.0.16.nupkg.sha512",
     "/Users/hien/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
