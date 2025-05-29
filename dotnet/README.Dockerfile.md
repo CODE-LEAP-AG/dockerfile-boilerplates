@@ -1,5 +1,14 @@
-# Summary
+# Dockerfile Explanation
+- [Summary](#summary)
+- [Details](#details)
+  - [Multi-stage build](#multi-stage-build)
+  - [Multi-platform build](#multi-platform-build)
+    - [BUILDPLATFORM](#buildplatform)
+    - [TARGETARCH](#targetarch)
+  - [Working directory](#working-directory)
+  - [Running as a non-root user](#running-as-a-non-root-user)
 
+# Summary
 The `Dockerfile` used in this project aim to apply best practices, ensuring that the application not only runs seamlessly in different environments, but also that the build time is fast and the final image size is optimized. This README will provide a detailed explanation of those aspects.
 
 # Details
@@ -43,9 +52,7 @@ Common Values:
 - `arm` – for older 32-bit ARM platforms (e.g., Raspberry Pi)
 
 #### Why You Should Not Manually Change TARGETARCH:
-
 Docker automatically assigns `TARGETARCH` based on the platform you specify with --platform. For example, when you use `--platform=linux/amd64`, Docker automatically sets `TARGETARCH=amd64`, or when you use `--platform=linux/arm64`, Docker automatically sets `TARGETARCH=arm64`.
-
 
 Technically, you can override this value manually using `--build-arg TARGETARCH=<your_target_arch>`. However, you should avoid doing this, as it can lead to inconsistencies between what your build tool generates and what Docker expects in the final image. This mismatch may result in runtime crashes or compatibility issues.
 
@@ -58,6 +65,3 @@ For example, with `WORKDIR /app`, the final source code of the application will 
 `APP_UID` is typically an environment variable or a build argument defined in the Dockerfile or passed during the container build process. It specifies the numeric user ID (UID) of a non-root user created within the container. For example, it could be set to 1000, 1001, or any other valid UID.
 
 The `USER $APP_UID` instruction in the Dockerfile ensures that the application runs under a non-root user inside the container. This is an important security best practice, as running processes as the root user can pose significant security risks.
-
-
-
