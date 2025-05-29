@@ -17,12 +17,12 @@ RUN dotnet restore -a $TARGETARCH
 # Copy the remaining source code
 COPY --link . .
 
-# Publish the app (with --no-restore flag as dependencies were restored earlier)
+# Publish the app (with --no-restore flag, as dependencies were restored earlier)
 RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 
 # We do not need the SDK in the final image, only the runtime
 # This helps reduce the image size
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 as final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 
 # Indicate that the app runs on port 8080 (Optional)
 EXPOSE 8080
