@@ -9,6 +9,7 @@
   - [Nginx](#nginx)
     - [Benefits of using Nginx in this context](#benefits-of-using-nginx-in-this-context)
     - [About the CMD](#about-the-cmd)
+  - [Running as a non-root user](#running-as-a-non-root-user)
 
 # Summary
 The `Dockerfile` used in this project aim to apply best practices, ensuring that the application not only runs seamlessly in different environments, but also that the build time is fast and the final image size is optimized. This README will provide a detailed explanation of those aspects.
