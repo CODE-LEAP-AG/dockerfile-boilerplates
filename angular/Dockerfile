@@ -1,6 +1,6 @@
 ARG NODE_VERSION=22.16.0
 
-FROM node:${NODE_VERSION} AS build
+FROM node:${NODE_VERSION}-alpine AS build
 
 WORKDIR /app
 
@@ -12,9 +12,9 @@ RUN npm install -g @angular/cli@19
 
 COPY --link . .
 
-RUN ng build --configuration=production
+RUN npm run build --configuration=production
 
-FROM nginx:latest
+FROM nginx:alpine
 
 COPY --link --from=build /app/dist/angular/browser /usr/share/nginx/html
 
