@@ -4,4 +4,3 @@ services:
       context: . # Path to the Dockerfile
     ports:
       - 8080:8080 # Map port on the host to port in the container
-

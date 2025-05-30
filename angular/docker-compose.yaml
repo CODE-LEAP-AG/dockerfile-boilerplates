@@ -1,6 +1,6 @@
 services:
   server:
     build:
-      context: .
+      context: . # Path to the Dockerfile
     ports:
-      - 3000:80
+      - 3000:80 # Map port on the host to port in the container
