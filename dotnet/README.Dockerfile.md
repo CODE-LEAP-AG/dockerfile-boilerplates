@@ -35,7 +35,7 @@ For example:
 
 - `windows/amd64` – Windows Server containers.
 
-To simulate building on a different platform, you can override the default using the --platform flag in the docker build command:
+To simulate building on a different platform, you can override the default using the `--platform` flag in the docker build command:
 
 `docker buildx build --platform=<target_platform> -t <app_name>:<tag> .`
 
