@@ -36,5 +36,8 @@ COPY --link --from=build /app/dist/angular/browser /usr/share/nginx/html
 # Indicate that Nginx serves the app on port 80 (default for HTTP)
 EXPOSE 80
 
+# Ensure the container runs as a non-root user, improving security
+USER $APP_UID
+
 # Run Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
