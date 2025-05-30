@@ -4,19 +4,19 @@ FROM node:${NODE_VERSION} AS build
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY --link package*.json ./
 
 RUN npm install
 
 RUN npm install -g @angular/cli@19
 
-COPY . .
+COPY --link . .
 
 RUN ng build --configuration=production
 
 FROM nginx:latest
 
-COPY --from=build /app/dist/angular/browser /usr/share/nginx/html
+COPY --link --from=build /app/dist/angular/browser /usr/share/nginx/html
 
 EXPOSE 80
 
