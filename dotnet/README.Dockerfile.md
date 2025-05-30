@@ -35,7 +35,7 @@ For example:
 
 - `windows/amd64` – Windows Server containers.
 
-To simulate building on a different platform, you can override the default using the --platform flag in the docker build command:
+To simulate building on a different platform, you can override the default using the `--platform` flag in the docker build command:
 
 `docker buildx build --platform=<target_platform> -t <app_name>:<tag> .`
 
@@ -62,6 +62,6 @@ The `WORKDIR` instruction in a Dockerfile sets the working directory for any `RU
 For example, with `WORKDIR /app`, the final source code of the application will be placed in the /app folder, which helps us quickly identify the source code directory inside the container. If we do not use the `WORKDIR` instruction, the image will still build successfully and the container will still run. However, when navigating the file structure from the root directory of the container, it will be cluttered with system folders (such as /bin, /dev, /etc, etc.), making it harder to locate the application files.
 
 ## Running as a non-root user
-`APP_UID` is typically an environment variable or a build argument defined in the Dockerfile or passed during the container build process. It specifies the numeric user ID (UID) of a non-root user created within the container. For example, it could be set to 1000, 1001, or any other valid UID.
+The .NET Linux container images include a new non-root user named `app` with the UID 1654. The UID is provided in an environment variable, `$APP_UID`. You can opt into this new user by adding the line `USER $APP_UID` to your Dockerfile.
 
 The `USER $APP_UID` instruction in the Dockerfile ensures that the application runs under a non-root user inside the container. This is an important security best practice, as running processes as the root user can pose significant security risks.
