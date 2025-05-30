@@ -28,13 +28,14 @@ RUN npm run build --configuration=production
 
 # Production stage
 # Use Nginx to serve the built Angular application
-FROM nginx:alpine
+# Use the unprivileged Nginx image to enhance security
+FROM nginxinc/nginx-unprivileged:alpine-perl
 
 # Copy the build output from the build stage.
 COPY --link --from=build /app/dist/angular/browser /usr/share/nginx/html
 
-# Indicate that Nginx serves the app on port 80 (default for HTTP)
-EXPOSE 80
+# Indicate that Nginx serves the app on port 8080
+EXPOSE 8080
 
 # Run Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]

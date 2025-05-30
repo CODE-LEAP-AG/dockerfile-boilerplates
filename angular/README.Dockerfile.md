@@ -78,7 +78,7 @@ RUN apk add --no-cache python3 make g++
 ```
 
 ## Nginx
-Nginx is a high-performance web server that is commonly used to serve static files, making it an ideal choice for hosting Angular applications in production. In this Dockerfile, the final production stage uses the official `nginx:alpine` image to serve the output of the Angular build.
+Nginx is a high-performance web server that is commonly used to serve static files, making it an ideal choice for hosting Angular applications in production. In this Dockerfile, the final production stage uses the [unprivileged Nginx](#running-as-a-non-root-user) image to serve the output of the Angular build.
 
 By copying the compiled Angular files into Nginx’s default serving directory (`/usr/share/nginx/html`), we ensure the application is delivered efficiently and reliably via HTTP.
 
@@ -88,8 +88,6 @@ By copying the compiled Angular files into Nginx’s default serving directory (
 
 - **Built-in production defaults**: The default Nginx configuration in the official image is already tuned to serve static files securely and efficiently.
 
-- **Alpine-based image**: Just like the Node.js image used in the build stage, `nginx:alpine` provides a minimal, lightweight runtime that reduces attack surface and image size.
-
 ### About the CMD
 
 The command `CMD ["nginx", "-g", "daemon off;"]` is included at the end of the Dockerfile to keep the Nginx process running in the foreground. While it is **not strictly required**, because the base `nginx` image already defines this as its default `CMD`, including it explicitly in the Dockerfile has some advantages:
@@ -98,3 +96,8 @@ The command `CMD ["nginx", "-g", "daemon off;"]` is included at the end of the D
 - **Extensibility**: It allows for easier customization in the future if you need to pass additional Nginx flags or replace it with a different entrypoint.
 
 The `-g "daemon off;"` option tells Nginx not to run in the background (as a daemon), which is necessary inside containers to keep the main process in the foreground and prevent the container from exiting.
+
+## Running as a non-root user
+`nginxinc/nginx-unprivileged:alpine-perl` is an **unprivileged** Nginx image, which means Nginx serves the application with `non-root` user permissions instead of `root`. This is an important security best practice, as running processes as the `root` user can pose significant security risks.
+
+Note that because we use the `nginxinc/nginx-unprivileged:alpine-perl` image, the default NGINX listen port is now 8080 instead of 80. For more information about this image, see: [nginx-unprivileged](https://hub.docker.com/r/nginxinc/nginx-unprivileged)
