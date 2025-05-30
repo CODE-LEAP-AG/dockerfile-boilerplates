@@ -2,7 +2,7 @@ ARG NODE_VERSION=22.16.0
 ARG ANGULAR_VERSION=19
 
 # Build stage
-FROM node:${NODE_VERSION}-alpine AS build
+FROM --platform=$BUILDPLATFORM node:${NODE_VERSION}-alpine AS build
 
 # Set the working directory for the build process
 WORKDIR /app
@@ -35,9 +35,6 @@ COPY --link --from=build /app/dist/angular/browser /usr/share/nginx/html
 
 # Indicate that Nginx serves the app on port 80 (default for HTTP)
 EXPOSE 80
-
-# Ensure the container runs as a non-root user, improving security
-USER $APP_UID
 
 # Run Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
