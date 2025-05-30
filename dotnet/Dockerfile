@@ -1,8 +1,10 @@
+ARG VERSION=8.0
 # Use the SDK image for building
 # Specifying the build platform using --platform for cross-compilation
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-# Defines the target architecture for cross-platform builds 
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:$VERSION AS build
+
+# Defines the target architecture for cross-platform builds
 ARG TARGETARCH
 
 # Set the working directory for the build process
@@ -22,7 +24,7 @@ RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 
 # We do not need the SDK in the final image, only the runtime
 # This helps reduce the image size
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:$VERSION AS final
 
 # Indicate that the app runs on port 8080 (Optional)
 EXPOSE 8080
